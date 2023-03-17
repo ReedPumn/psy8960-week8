@@ -1,0 +1,64 @@
+---
+title: "PSY 8960 Week 8 Project"
+author: "Reed Priest"
+date: "`r Sys.Date()`"
+output: html_document
+df_print: paged
+---
+
+**Reproducable Image and Online Resources**
+
+An image of this project as of *`r Sys.Date()`* can be accessed by [clicking this link](X). An interactive web app is available by [clicking this link](X) instead.
+
+**Script Settings and Resources**
+
+```{r Setting working directory, message = FALSE}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyverse)
+```
+
+**Data Import and Cleaning**
+
+This section makes the data tidy and prepares them for analysis. Two new variables were calculated to later correlate them.
+
+```{r Data preparation}
+week8_tbl <- read_csv("../data/week3.csv") %>%
+  rowwise() %>%
+  mutate(q5 = 6 - q5,
+         q1_6 = mean(c(q1:q6)),
+         q8_10 = mean(c(q8:q10)))
+```
+
+**Visualization**
+
+This section shows our dataset and visualizes the linear relationship between the means of questions one through six with the mean of questions eight through ten. I chose to: 1) rename the axes to enable clearer interpretations and 2) jitter the data to prevent overlapped points from obscuring the graph.
+
+```{r Making graph, echo = FALSE}
+week8_tbl %>%
+  select(q1:q6)
+
+ggplot(week8_tbl, aes(x = q1_6, y = q8_10)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", se = TRUE, color = "purple") +
+  labs(x = "Mean of Questions 1-6", y = "Mean of Questions 8-10")
+```
+
+**Analysis**
+
+This section correlated the two means of our main variables.
+
+```{r Correlation calculation}
+cor.test(week8_tbl$q1_6, week8_tbl$q8_10)
+```
+
+I observed a correlation of `r round(cor.test(week8_tbl$q1_6, week8_tbl$q8_10)[[4]], 2)`. The p-value is not less than .05; therefore, we fail to conclude they have a significant relationship.
+
+**Data Export**
+
+This section exports the relevant columns of our dataset to be used in a shiny format. This is done to communicate our raw data.
+
+```{r Exporting table}
+week8_tbl %>%
+  select(-timeStart, -q7) %>%
+  saveRDS(file = "../shiny_week8/shinydata.rds")
+```
