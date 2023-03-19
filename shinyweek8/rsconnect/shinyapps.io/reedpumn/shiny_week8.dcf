@@ -6,7 +6,7 @@ server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8610244
 bundleId: 6979455
-url: https://reedpumn.shinyapps.io/shiny_week8/
+url: https://reedpumn.shinyapps.io/shinyweek8/
 when: 1679259683.63159
 lastSyncTime: 1679259683.63159
 asMultiple: FALSE
