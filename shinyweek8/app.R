@@ -54,4 +54,4 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # Deploy the app.
-# rsconnect::deployApp("./shiny_week8/")
+# rsconnect::deployApp()
