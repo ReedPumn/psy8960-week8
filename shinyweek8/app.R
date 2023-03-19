@@ -50,8 +50,8 @@ server <- function(input, output) {
   })
 }
 
-# Finally create the fourth component
+# Finally create the fourth component.
 shinyApp(ui = ui, server = server)
 
 # Deploy the app.
-# rsconnect::deployApp("./shinyweek8/")
+# rsconnect::deployApp("./shiny_week8/")
