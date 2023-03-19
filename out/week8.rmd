@@ -8,7 +8,7 @@ df_print: paged
 
 **Reproducable Image and Online Resources**
 
-An image of this project as of *`r Sys.Date()`* can be accessed by [clicking this link](X). An interactive web app is available by [clicking this link](X) instead.
+An image of this project as of *`r Sys.Date()`* can be accessed by [clicking this link](X). An interactive web app is available by [clicking this link](https://reedpumn.shinyapps.io/shinyweek8/) instead.
 
 **Script Settings and Resources**
 
