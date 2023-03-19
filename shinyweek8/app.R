@@ -19,7 +19,7 @@ ui <- fluidPage(
 # Create the server
 server <- function(input, output) {
   # Bring in the main data file. Selected parts of this data file will create the main plot depending on the radio buttons chosen.
-  shinydata_tbl <- readRDS(file = "../shiny_week8/shinydata_tbl.rds")
+  shinydata_tbl <- readRDS(file = "../shinyweek8/shinydata_tbl.rds")
   # I want to keep the main output code within the server readable, so I've included the lengthy ggplot code here. For the standard error radio button, I created two plots, differing only on whether they display the standard error.
   gg_se <- ggplot(shinydata_tbl, aes(x = q1_6, y = q8_10)) +
     geom_jitter() +
@@ -52,3 +52,7 @@ server <- function(input, output) {
 
 #Finally create the fourth component
 shinyApp(ui = ui, server = server)
+
+#Deploy the app.
+library(rsconnect)
+deployApp(rsconnect::deployApp("../shinyweek8"))

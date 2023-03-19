@@ -61,5 +61,5 @@ This section exports the relevant columns of our dataset to be used in a skinny 
 ```{r Exporting}
 week8_tbl %>%
   select(-timeStart, -condition, -q7) %>%
-  saveRDS(file = "../shiny_week8/shinydata_tbl.rds")
+  saveRDS(file = "../shinyweek8/shinydata_tbl.rds")
 ```
