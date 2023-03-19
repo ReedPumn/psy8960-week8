@@ -26,7 +26,8 @@ week8_tbl <- read_csv("../data/week3.csv") %>%
   rowwise() %>%
   mutate(q5 = 6 - q5,
          q1_6 = mean(c(q1:q6)),
-         q8_10 = mean(c(q8:q10)))
+         q8_10 = mean(c(q8:q10)),
+         gender = factor(gender, levels = c("M", "F"), labels=c("Male","Female")))
 ```
 
 **Visualization**
@@ -55,10 +56,10 @@ I observed a correlation of `r round(cor.test(week8_tbl$q1_6, week8_tbl$q8_10)[[
 
 **Data Export**
 
-This section exports the relevant columns of our dataset to be used in a shiny format. This is done to communicate our raw data.
+This section exports the relevant columns of our dataset to be used in a skinny format. This is done to communicate our raw data.
 
-```{r Exporting table}
+```{r Exporting}
 week8_tbl %>%
-  select(-timeStart, -q7) %>%
-  saveRDS(file = "../shiny_week8/shinydata.rds")
+  select(-timeStart, -condition, -q7) %>%
+  saveRDS(file = "../shiny_week8/shinydata_tbl.rds")
 ```
